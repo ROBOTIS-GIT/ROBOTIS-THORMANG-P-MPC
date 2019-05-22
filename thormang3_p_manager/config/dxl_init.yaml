@@ -1,0 +1,600 @@
+r_arm_sh_p1 :   # H54P-100-S500-R
+  return_delay_time     : 0   # item name : value
+  operating_mode        : 3
+  homing_offset         : 0
+  current_limit         : 15900
+  max_position_limit    : 501923
+  min_position_limit    : -501923
+  shutdown              : 52
+  velocity_i_gain       : 1290
+  velocity_p_gain       : 3593
+  position_d_gain       : 0
+  position_i_gain       : 0
+  position_p_gain       : 502
+  feedforward_2nd_gain  : 0
+  feedforward_1st_gain  : 0
+  goal_current          : 15900
+  profile_acceleration  : 0
+  profile_velocity      : 0
+
+l_arm_sh_p1 :   # H54P-100-S500-R
+  return_delay_time     : 0   # item name : value
+  operating_mode        : 3
+  homing_offset         : 0
+  current_limit         : 15900
+  max_position_limit    : 501923
+  min_position_limit    : -501923
+  shutdown              : 52
+  velocity_i_gain       : 1290
+  velocity_p_gain       : 3593
+  position_d_gain       : 0
+  position_i_gain       : 0
+  position_p_gain       : 502
+  feedforward_2nd_gain  : 0
+  feedforward_1st_gain  : 0
+  goal_current          : 15900
+  profile_acceleration  : 0
+  profile_velocity      : 0
+       
+r_arm_sh_r  :   # H54P-100-S500-R
+  return_delay_time     : 0   # item name : value
+  operating_mode        : 3
+  homing_offset         : 0
+  current_limit         : 15900
+  max_position_limit    : 501923
+  min_position_limit    : -501923
+  shutdown              : 52
+  velocity_i_gain       : 1290
+  velocity_p_gain       : 3593
+  position_d_gain       : 0
+  position_i_gain       : 0
+  position_p_gain       : 502
+  feedforward_2nd_gain  : 0
+  feedforward_1st_gain  : 0
+  goal_current          : 15900
+  profile_acceleration  : 0
+  profile_velocity      : 0
+       
+l_arm_sh_r  :   # H54P-100-S500-R
+  return_delay_time     : 0   # item name : value
+  operating_mode        : 3
+  homing_offset         : 0
+  current_limit         : 15900
+  max_position_limit    : 501923
+  min_position_limit    : -501923
+  shutdown              : 52
+  velocity_i_gain       : 1290
+  velocity_p_gain       : 3593
+  position_d_gain       : 0
+  position_i_gain       : 0
+  position_p_gain       : 502
+  feedforward_2nd_gain  : 0
+  feedforward_1st_gain  : 0
+  goal_current          : 15900
+  profile_acceleration  : 0
+  profile_velocity      : 0
+       
+r_arm_sh_p2 :   # H54P-100-S500-R
+  return_delay_time     : 0   # item name : value
+  operating_mode        : 3
+  homing_offset         : 0
+  current_limit         : 15900
+  max_position_limit    : 501923
+  min_position_limit    : -501923
+  shutdown              : 52
+  velocity_i_gain       : 1290
+  velocity_p_gain       : 3593
+  position_d_gain       : 0
+  position_i_gain       : 0
+  position_p_gain       : 502
+  feedforward_2nd_gain  : 0
+  feedforward_1st_gain  : 0
+  goal_current          : 15900
+  profile_acceleration  : 0
+  profile_velocity      : 0
+       
+l_arm_sh_p2 :   # H54P-100-S500-R
+  return_delay_time     : 0   # item name : value
+  operating_mode        : 3
+  homing_offset         : 0
+  current_limit         : 15900
+  max_position_limit    : 501923
+  min_position_limit    : -501923
+  shutdown              : 52
+  velocity_i_gain       : 1290
+  velocity_p_gain       : 3593
+  position_d_gain       : 0
+  position_i_gain       : 0
+  position_p_gain       : 502
+  feedforward_2nd_gain  : 0
+  feedforward_1st_gain  : 0
+  goal_current          : 15900
+  profile_acceleration  : 0
+  profile_velocity      : 0
+       
+r_arm_el_y  :   # H54P-100-S500-R
+  return_delay_time     : 0   # item name : value
+  operating_mode        : 3
+  homing_offset         : 125476  # 45 deg
+  current_limit         : 15900
+  max_position_limit    : 501923
+  min_position_limit    : -501923
+  shutdown              : 52
+  velocity_i_gain       : 1290
+  velocity_p_gain       : 3593
+  position_d_gain       : 0
+  position_i_gain       : 0
+  position_p_gain       : 502
+  feedforward_2nd_gain  : 0
+  feedforward_1st_gain  : 0
+  goal_current          : 15900
+  profile_acceleration  : 0
+  profile_velocity      : 0
+       
+l_arm_el_y  :   # H54P-100-S500-R
+  return_delay_time     : 0   # item name : value
+  operating_mode        : 3
+  homing_offset         : -125476  # -45 deg
+  current_limit         : 15900
+  max_position_limit    : 501923
+  min_position_limit    : -501923
+  shutdown              : 52
+  velocity_i_gain       : 1290
+  velocity_p_gain       : 3593
+  position_d_gain       : 0
+  position_i_gain       : 0
+  position_p_gain       : 502
+  feedforward_2nd_gain  : 0
+  feedforward_1st_gain  : 0
+  goal_current          : 15900
+  profile_acceleration  : 0
+  profile_velocity      : 0
+       
+r_arm_wr_r  :   # H42P-20-S300-R
+  return_delay_time     : 0    # item name : value
+  operating_mode        : 3
+  homing_offset         : 0
+  current_limit         : 4500
+  max_position_limit    : 303454
+  min_position_limit    : -303454
+  shutdown              : 52
+  velocity_i_gain       : 502
+  velocity_p_gain       : 1332
+  position_d_gain       : 0
+  position_i_gain       : 0
+  position_p_gain       : 879
+  feedforward_2nd_gain  : 0
+  feedforward_1st_gain  : 0
+  goal_current          : 4500
+  profile_acceleration  : 0
+  profile_velocity      : 0
+       
+l_arm_wr_r  :   # H42P-20-S300-R
+  return_delay_time     : 0    # item name : value
+  operating_mode        : 3
+  homing_offset         : 0
+  current_limit         : 4500
+  max_position_limit    : 303454
+  min_position_limit    : -303454
+  shutdown              : 52
+  velocity_i_gain       : 502
+  velocity_p_gain       : 1332
+  position_d_gain       : 0
+  position_i_gain       : 0
+  position_p_gain       : 879
+  feedforward_2nd_gain  : 0
+  feedforward_1st_gain  : 0
+  goal_current          : 4500
+  profile_acceleration  : 0
+  profile_velocity      : 0
+       
+r_arm_wr_y  :   # H42P-20-S300-R
+  return_delay_time     : 0    # item name : value
+  operating_mode        : 3
+  homing_offset         : 0
+  current_limit         : 4500
+  max_position_limit    : 303454
+  min_position_limit    : -303454
+  shutdown              : 52
+  velocity_i_gain       : 502
+  velocity_p_gain       : 1332
+  position_d_gain       : 0
+  position_i_gain       : 0
+  position_p_gain       : 879
+  feedforward_2nd_gain  : 0
+  feedforward_1st_gain  : 0
+  goal_current          : 4500
+  profile_acceleration  : 0
+  profile_velocity      : 0
+       
+l_arm_wr_y  :   # H42P-20-S300-R
+  return_delay_time     : 0    # item name : value
+  operating_mode        : 3
+  homing_offset         : 0
+  current_limit         : 4500
+  max_position_limit    : 303454
+  min_position_limit    : -303454
+  shutdown              : 52
+  velocity_i_gain       : 502
+  velocity_p_gain       : 1332
+  position_d_gain       : 0
+  position_i_gain       : 0
+  position_p_gain       : 879
+  feedforward_2nd_gain  : 0
+  feedforward_1st_gain  : 0
+  goal_current          : 4500
+  profile_acceleration  : 0
+  profile_velocity      : 0
+
+r_arm_wr_p  :   # H42P-20-S300-R
+  return_delay_time     : 0    # item name : value
+  operating_mode        : 3
+  homing_offset         : 0
+  current_limit         : 4500
+  max_position_limit    : 303454
+  min_position_limit    : -303454
+  shutdown              : 52
+  velocity_i_gain       : 502
+  velocity_p_gain       : 1332
+  position_d_gain       : 0
+  position_i_gain       : 0
+  position_p_gain       : 879
+  feedforward_2nd_gain  : 0
+  feedforward_1st_gain  : 0
+  goal_current          : 4500
+  profile_acceleration  : 0
+  profile_velocity      : 0
+
+l_arm_wr_p  :   # H42P-20-S300-R
+  return_delay_time     : 0    # item name : value
+  operating_mode        : 3
+  homing_offset         : 0
+  current_limit         : 4500
+  max_position_limit    : 303454
+  min_position_limit    : -303454
+  shutdown              : 52
+  velocity_i_gain       : 502
+  velocity_p_gain       : 1332
+  position_d_gain       : 0
+  position_i_gain       : 0
+  position_p_gain       : 879
+  feedforward_2nd_gain  : 0
+  feedforward_1st_gain  : 0
+  goal_current          : 4500
+  profile_acceleration  : 0
+  profile_velocity      : 0
+
+r_leg_hip_y :   # H54P-100-S500-R
+  return_delay_time     : 0   # item name : value
+  operating_mode        : 3
+  homing_offset         : 0
+  current_limit         : 15900
+  max_position_limit    : 501923
+  min_position_limit    : -501923
+  shutdown              : 52
+  velocity_i_gain       : 1290  # default : 1290
+  velocity_p_gain       : 4491  # default : 3593
+  position_d_gain       : 0
+  position_i_gain       : 0
+  position_p_gain       : 502
+  feedforward_2nd_gain  : 0
+  feedforward_1st_gain  : 0
+  goal_current          : 15900
+  profile_acceleration  : 0
+  profile_velocity      : 0
+       
+l_leg_hip_y :   # H54P-100-S500-R
+  return_delay_time     : 0   # item name : value
+  operating_mode        : 3
+  homing_offset         : 0
+  current_limit         : 15900
+  max_position_limit    : 501923
+  min_position_limit    : -501923
+  shutdown              : 52
+  velocity_i_gain       : 1290  # default : 1290
+  velocity_p_gain       : 4491  # default : 3593
+  position_d_gain       : 0
+  position_i_gain       : 0
+  position_p_gain       : 502
+  feedforward_2nd_gain  : 0
+  feedforward_1st_gain  : 0
+  goal_current          : 15900
+  profile_acceleration  : 0
+  profile_velocity      : 0
+       
+r_leg_hip_r :   # H54P-200-S500-R
+  return_delay_time     : 0   # item name : value
+  operating_mode        : 3
+  homing_offset         : 0
+  current_limit         : 22740
+  max_position_limit    : 501433
+  min_position_limit    : -501433
+  shutdown              : 52
+  velocity_i_gain       : 2209  # default : 2209
+  velocity_p_gain       : 7691  # default : 6153
+  position_d_gain       : 0
+  position_i_gain       : 0
+  position_p_gain       : 314
+  feedforward_2nd_gain  : 0
+  feedforward_1st_gain  : 0
+  goal_current          : 22740
+  profile_acceleration  : 0
+  profile_velocity      : 0
+         
+l_leg_hip_r :   # H54P-200-S500-R
+  return_delay_time     : 0   # item name : value
+  operating_mode        : 3
+  homing_offset         : 0
+  current_limit         : 22740
+  max_position_limit    : 501433
+  min_position_limit    : -501433
+  shutdown              : 52
+  velocity_i_gain       : 2209  # default : 2209
+  velocity_p_gain       : 7691  # default : 6153
+  position_d_gain       : 0
+  position_i_gain       : 0
+  position_p_gain       : 314
+  feedforward_2nd_gain  : 0
+  feedforward_1st_gain  : 0
+  goal_current          : 22740
+  profile_acceleration  : 0
+  profile_velocity      : 0
+       
+r_leg_hip_p :   # H54P-200-S500-R
+  return_delay_time     : 0   # item name : value
+  operating_mode        : 3
+  homing_offset         : -16730    # -6 deg
+  current_limit         : 22740
+  max_position_limit    : 501433
+  min_position_limit    : -501433
+  shutdown              : 52
+  velocity_i_gain       : 2209  # default : 2209
+  velocity_p_gain       : 7691  # default : 6153
+  position_d_gain       : 0
+  position_i_gain       : 0
+  position_p_gain       : 314
+  feedforward_2nd_gain  : 0
+  feedforward_1st_gain  : 0
+  goal_current          : 22740
+  profile_acceleration  : 0
+  profile_velocity      : 0
+       
+l_leg_hip_p :   # H54P-200-S500-R
+  return_delay_time     : 0   # item name : value
+  operating_mode        : 3
+  homing_offset         : 16730   # 6 deg
+  current_limit         : 22740
+  max_position_limit    : 501433
+  min_position_limit    : -501433
+  shutdown              : 52
+  velocity_i_gain       : 2209  # default : 2209
+  velocity_p_gain       : 7691  # default : 6153
+  position_d_gain       : 0
+  position_i_gain       : 0
+  position_p_gain       : 314
+  feedforward_2nd_gain  : 0
+  feedforward_1st_gain  : 0
+  goal_current          : 22740
+  profile_acceleration  : 0
+  profile_velocity      : 0
+       
+r_leg_kn_p  :   # H54P-200-S500-R
+  return_delay_time     : 0   # item name : value
+  operating_mode        : 3
+  homing_offset         : -25096   # -9 deg
+  current_limit         : 22740
+  max_position_limit    : 501433
+  min_position_limit    : -501433
+  shutdown              : 52
+  velocity_i_gain       : 2209  # default : 2209
+  velocity_p_gain       : 7691  # default : 6153
+  position_d_gain       : 0
+  position_i_gain       : 0
+  position_p_gain       : 314
+  feedforward_2nd_gain  : 0
+  feedforward_1st_gain  : 0
+  goal_current          : 22740
+  profile_acceleration  : 0
+  profile_velocity      : 0
+       
+l_leg_kn_p  :   # H54P-200-S500-R
+  return_delay_time     : 0   # item name : value
+  operating_mode        : 3
+  homing_offset         : 25096   # -9 deg
+  current_limit         : 22740
+  max_position_limit    : 501433
+  min_position_limit    : -501433
+  shutdown              : 52
+  velocity_i_gain       : 2209  # default : 2209
+  velocity_p_gain       : 7691  # default : 6153
+  position_d_gain       : 0
+  position_i_gain       : 0
+  position_p_gain       : 314
+  feedforward_2nd_gain  : 0
+  feedforward_1st_gain  : 0
+  goal_current          : 22740
+  profile_acceleration  : 0
+  profile_velocity      : 0
+       
+r_leg_an_p  :   # H54P-200-S500-R
+  return_delay_time     : 0   # item name : value
+  operating_mode        : 3
+  homing_offset         : 16730   # 6 deg
+  current_limit         : 22740
+  max_position_limit    : 501433
+  min_position_limit    : -501433
+  external_port_mod_1   : 0
+  external_port_mod_2   : 0
+  shutdown              : 52
+  velocity_i_gain       : 2209  # default : 2209
+  velocity_p_gain       : 7691  # default : 6153
+  position_d_gain       : 0
+  position_i_gain       : 0
+  position_p_gain       : 314
+  feedforward_2nd_gain  : 0
+  feedforward_1st_gain  : 0
+  goal_current          : 22740
+  profile_acceleration  : 0
+  profile_velocity      : 0
+       
+l_leg_an_p  :   # H54P-200-S500-R
+  return_delay_time     : 0   # item name : value
+  operating_mode        : 3
+  homing_offset         : -16730   # -6 deg
+  current_limit         : 22740
+  max_position_limit    : 501433
+  min_position_limit    : -501433
+  external_port_mod_1   : 0
+  external_port_mod_2   : 0
+  shutdown              : 52
+  velocity_i_gain       : 2209  # default : 2209
+  velocity_p_gain       : 7691  # default : 6153
+  position_d_gain       : 0
+  position_i_gain       : 0
+  position_p_gain       : 314
+  feedforward_2nd_gain  : 0
+  feedforward_1st_gain  : 0
+  goal_current          : 22740
+  profile_acceleration  : 0
+  profile_velocity      : 0
+       
+r_leg_an_r  :   # H54P-200-S500-R
+  return_delay_time     : 0   # item name : value
+  operating_mode        : 3
+  homing_offset         : 0
+  current_limit         : 22740
+  max_position_limit    : 501433
+  min_position_limit    : -501433
+  external_port_mod_1   : 0
+  external_port_mod_2   : 0
+  external_port_mod_3   : 0
+  external_port_mod_4   : 0
+  shutdown              : 52
+  velocity_i_gain       : 2209  # default : 2209
+  velocity_p_gain       : 7691  # default : 6153
+  position_d_gain       : 0
+  position_i_gain       : 0
+  position_p_gain       : 314
+  feedforward_2nd_gain  : 0
+  feedforward_1st_gain  : 0
+  goal_current          : 22740
+  profile_acceleration  : 0
+  profile_velocity      : 0
+       
+l_leg_an_r  :   # H54P-200-S500-R
+  return_delay_time     : 0   # item name : value
+  operating_mode        : 3
+  homing_offset         : 0
+  current_limit         : 22740
+  max_position_limit    : 501433
+  min_position_limit    : -501433
+  external_port_mod_1   : 0
+  external_port_mod_2   : 0
+  external_port_mod_3   : 0
+  external_port_mod_4   : 0
+  shutdown              : 52
+  velocity_i_gain       : 2209  # default : 2209
+  velocity_p_gain       : 7691  # default : 6153
+  position_d_gain       : 0
+  position_i_gain       : 0
+  position_p_gain       : 314
+  feedforward_2nd_gain  : 0
+  feedforward_1st_gain  : 0
+  goal_current          : 22740
+  profile_acceleration  : 0
+  profile_velocity      : 0
+       
+torso_y     :   # H54P-100-S500-R
+  return_delay_time     : 0   # item name : value
+  operating_mode        : 3
+  homing_offset         : 0
+  current_limit         : 15900
+  max_position_limit    : 501923
+  min_position_limit    : -501923
+  shutdown              : 52
+  velocity_i_gain       : 1290
+  velocity_p_gain       : 3593
+  position_d_gain       : 0
+  position_i_gain       : 0
+  position_p_gain       : 502
+  feedforward_2nd_gain  : 0
+  feedforward_1st_gain  : 0
+  goal_current          : 15900
+  profile_acceleration  : 0
+  profile_velocity      : 0
+       
+head_y      :   # H42P-20-S300-R
+  return_delay_time     : 0   # item name : value
+  operating_mode        : 3
+  homing_offset         : 0
+  current_limit         : 4500
+  max_position_limit    : 303454
+  min_position_limit    : -303454
+  shutdown              : 52
+  velocity_i_gain       : 502
+  velocity_p_gain       : 1332
+  position_d_gain       : 0
+  position_i_gain       : 0
+  position_p_gain       : 879
+  feedforward_2nd_gain  : 0
+  feedforward_1st_gain  : 0
+  goal_current          : 4500
+  profile_acceleration  : 0
+  profile_velocity      : 0
+       
+head_p      :   # H42P-20-S300-R
+  return_delay_time     : 0   # item name : value
+  operating_mode        : 3
+  homing_offset         : 0
+  current_limit         : 4500
+  max_position_limit    : 303454
+  min_position_limit    : -303454
+  shutdown              : 52
+  velocity_i_gain       : 502
+  velocity_p_gain       : 1332
+  position_d_gain       : 0
+  position_i_gain       : 0
+  position_p_gain       : 879
+  feedforward_2nd_gain  : 0
+  feedforward_1st_gain  : 0
+  goal_current          : 4500
+  profile_acceleration  : 0
+  profile_velocity      : 0
+       
+r_arm_grip  :   # RH-P12-RN(A)
+  return_delay_time     : 0   # item name : value
+  operating_mode        : 5
+  homing_offset         : 0
+  current_limit         : 661
+  max_position_limit    : 1150
+  min_position_limit    : 0
+  shutdown              : 52
+  velocity_i_gain       : 0
+  velocity_p_gain       : 300
+  position_d_gain       : 0
+  position_i_gain       : 0
+  position_p_gain       : 193
+  feedforward_2nd_gain  : 0
+  feedforward_1st_gain  : 0
+  goal_current          : 661
+  profile_acceleration  : 0
+  profile_velocity      : 0
+         
+l_arm_grip  :   # RH-P12-RN(A)
+  return_delay_time     : 0   # item name : value
+  operating_mode        : 5
+  homing_offset         : 0
+  current_limit         : 661
+  max_position_limit    : 1150
+  min_position_limit    : 0
+  shutdown              : 52
+  velocity_i_gain       : 0
+  velocity_p_gain       : 300
+  position_d_gain       : 0
+  position_i_gain       : 0
+  position_p_gain       : 193
+  feedforward_2nd_gain  : 0
+  feedforward_1st_gain  : 0
+  goal_current          : 661
+  profile_acceleration  : 0
+  profile_velocity      : 0
