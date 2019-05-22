@@ -3,7 +3,7 @@
   <name>thormang3_p_manager</name>
   <version>0.2.0</version>
   <description>
-    This package describes robot manager to execute THORMANG3+'s motion modules.
+    This package describes robot manager to execute ROBOTIS THORMANG3 (DXL Pro+ Ver)'s motion modules.
   </description>
   <license>Apache 2.0</license>
   <author email="zerom@robotis.com">Zerom</author>

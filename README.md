@@ -1,13 +1,13 @@
-# ROBOTIS THORMANG3
+# ROBOTIS THORMANG3 (DXL PRO+ Ver)
 ![](https://github.com/ROBOTIS-GIT/emanual/blob/master/assets/images/platform/thormang3/thormang3.png)
 
-## ROS Packages for ROBOTIS THORMANG3 Plus MPC
+## ROS Packages for ROBOTIS THORMANG3 (DXL PRO+ Ver)'s MPC
 |Version|Kinetic + Ubuntu Xenial|Melodic + Ubuntu Bionic|
 |:---:|:---:|:---:|
 |[![GitHub version](https://badge.fury.io/gh/ROBOTIS-GIT%2FROBOTIS-THORMANG-P-MPC.svg)](https://badge.fury.io/gh/ROBOTIS-GIT%2FROBOTIS-THORMANG-P-MPC)|[![Build Status](https://travis-ci.org/ROBOTIS-GIT/ROBOTIS-THORMANG-P-MPC.svg?branch=kinetic-devel)](https://travis-ci.org/ROBOTIS-GIT/ROBOTIS-THORMANG-P-MPC)|-|
 
-## ROBOTIS e-Manual for ROBOTIS THORMANG3
-- [ROBOTIS e-Manual for ROBOTIS THORMANG3 Plus](http://emanual.robotis.com/docs/en/platform/thormang3/introduction/)
+## ROBOTIS e-Manual for ROBOTIS THORMANG3 (DXL PRO+ Ver)
+- [ROBOTIS e-Manual for ROBOTIS THORMANG3 (DXL PRO+ Ver)](http://emanual.robotis.com/docs/en/platform/thormang3/introduction/)
 
 ## Wiki for thormang3_p_mpc Packages
 - http://wiki.ros.org/thormang3_p_mpc (metapackage)
@@ -25,7 +25,7 @@
 - http://wiki.ros.org/thormang3_manipulation_module
 - http://wiki.ros.org/thormang3_walking_module
 
-## Open Source related to ROBOTIS THORMANG3
+## Open Source related to ROBOTIS THORMANG3 (DXL PRO+ Ver)
 - [thormang3_msgs](https://github.com/ROBOTIS-GIT/ROBOTIS-THORMANG-msgs)
 - [thormang3_common](https://github.com/ROBOTIS-GIT/ROBOTIS-THORMANG-Common)
 - [thormang3_mpc](https://github.com/ROBOTIS-GIT/ROBOTIS-THORMANG-MPC)
@@ -43,17 +43,17 @@
 - [dynamixel_sdk](https://github.com/ROBOTIS-GIT/DynamixelSDK)
 - [robotis_op3](https://github.com/ROBOTIS-GIT/ROBOTIS-OP3)
 
-## Documents and Videos related to ROBOTIS THORMANG3
-- [ROBOTIS e-Manual for ROBOTIS THORMANG3](http://emanual.robotis.com/docs/en/platform/thormang3/introduction/)
+## Documents and Videos related to ROBOTIS THORMANG3 (DXL PRO+ Ver)
+- [ROBOTIS e-Manual for ROBOTIS THORMANG3 (DXL PRO+ Ver)](http://emanual.robotis.com/docs/en/platform/thormang3/introduction/)
 - [ROBOTIS e-Manual for ROBOTIS Manipulator-H](http://emanual.robotis.com/docs/en/platform/manipulator_h/introduction/)
 - [ROBOTIS e-Manual for RH-P12-RN](http://emanual.robotis.com/docs/en/platform/rh_p12_rn/)
 - [ROBOTIS e-Manual for ROBOTIS Framework](http://emanual.robotis.com/docs/en/software/robotis_framework_packages/)
 - [ROBOTIS e-Manual for Dynamixel SDK](http://emanual.robotis.com/docs/en/software/dynamixel/dynamixel_sdk/overview/)
 - [ROBOTIS e-Manual for ROBOTIS OP3](http://emanual.robotis.com/docs/en/platform/op3/introduction/)
 
-## What is THORMANG3 Plus?
+## What is ROBOTIS THORMANG3 (DXL PRO+ Ver)?
 THOR (Tactical Hazardous Operations Robot) is an affordable, full size humanoid robot platform with advanced
-computational power, sophisticated sensors, high payload capacity, and dynamic motion abilities to enable many exciting researches and educational activities. THORMANG3 Plus version is changed actuators from Dynamixel Pro to Dynamixel Pro Plus.
+computational power, sophisticated sensors, high payload capacity, and dynamic motion abilities to enable many exciting researches and educational activities. ROBOTIS THORMANG3 (DXL PRO+ Ver) is changed actuators from Dynamixel Pro to Dynamixel Pro Plus.
 
 ### Hardware
 |Feature|Description|
