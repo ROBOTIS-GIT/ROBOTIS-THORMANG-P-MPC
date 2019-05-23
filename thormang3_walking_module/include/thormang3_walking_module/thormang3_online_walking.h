@@ -1,0 +1,217 @@
+/*******************************************************************************
+* Copyright 2018 ROBOTIS CO., LTD.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*******************************************************************************/
+
+/*
+ * thormang3_online_walking.h
+ *
+ *  Created on: 2016. 6. 10.
+ *      Author: Jay Song
+ */
+
+
+#ifndef THORMANG3_WALKING_MODULE_THORMANG3_ONLINEL_WALKING_H_
+#define THORMANG3_WALKING_MODULE_THORMANG3_ONLINEL_WALKING_H_
+
+#include <vector>
+#include <ros/ros.h>
+#include <ros/package.h>
+#include <boost/thread.hpp>
+#include <eigen3/Eigen/Eigen>
+#include <yaml-cpp/yaml.h>
+
+#include "robotis_framework_common/singleton.h"
+#include "robotis_math/robotis_math.h"
+
+#include "thormang3_kinematics_dynamics/kinematics_dynamics.h"
+#include "thormang3_balance_control/thormang3_balance_control.h"
+
+#define _USE_PD_BALANCE_
+
+namespace thormang3
+{
+
+class THORMANG3OnlineWalking : public robotis_framework::Singleton<THORMANG3OnlineWalking>
+{
+public:
+  THORMANG3OnlineWalking();
+  virtual ~THORMANG3OnlineWalking();
+
+  void initialize();
+  void reInitialize();
+  void start();
+  void stop();
+  void process();
+  bool isRunning();
+
+  bool addStepData(robotis_framework::StepData step_data);
+  void eraseLastStepData();
+  int  getNumofRemainingUnreservedStepData();
+  void getReferenceStepDatafotAddition(robotis_framework::StepData *ref_step_data_for_addition);
+
+  void setRefZMPDecisionParameter(double X_ZMP_CenterShift, double Y_ZMP_CenterShift, double Y_ZMP_Convergence);
+
+  bool setInitialPose(double r_foot_x, double r_foot_y, double r_foot_z, double r_foot_roll, double r_foot_pitch, double r_foot_yaw,
+                      double l_foot_x, double l_foot_y, double l_foot_z, double l_foot_roll, double l_foot_pitch, double l_foot_yaw,
+                      double center_of_body_x, double center_of_body_y, double center_of_body_z,
+                      double center_of_body_roll, double center_of_body_pitch, double center_of_body_yaw);
+
+  void setInitalWaistYawAngle(double waist_yaw_angle_rad);
+
+  void setInitialRightShoulderAngle(double shoulder_angle_rad);
+  void setInitialLeftShoulderAngle(double shoulder_angle_rad);
+  void setInitialRightElbowAngle(double elbow_angle_rad);
+  void setInitialLeftElbowAngle(double elbow_angle_rad);
+
+  void setCurrentIMUSensorOutput(double gyro_x, double gyro_y, double quat_x, double quat_y, double quat_z, double quat_w);
+
+  Eigen::MatrixXd mat_cob_to_g_,  mat_g_to_cob_;
+  Eigen::MatrixXd mat_robot_to_cob_, mat_cob_to_robot_;
+  Eigen::MatrixXd mat_robot_to_g_, mat_g_to_robot_;
+  Eigen::MatrixXd mat_cob_to_rhip_, mat_rhip_to_cob_;
+  Eigen::MatrixXd mat_cob_to_lhip_, mat_lhip_to_cob_;
+
+  Eigen::MatrixXd mat_g_to_rfoot_, mat_g_to_lfoot_;
+
+  double r_shoulder_out_angle_rad_;
+  double l_shoulder_out_angle_rad_;
+  double r_elbow_out_angle_rad_;
+  double l_elbow_out_angle_rad_;
+  double r_leg_out_angle_rad_[6];
+  double l_leg_out_angle_rad_[6];
+  double out_angle_rad_[16];
+
+  double hip_roll_feedforward_angle_rad_;
+
+  double curr_angle_rad_[12];
+  thormang3::BalancePDController leg_angle_feed_back_[12];
+
+  // balance control
+  int balance_error_;
+  thormang3::BalanceControlUsingPDController balance_ctrl_;
+
+
+  // sensor value
+  double current_right_fx_N_,  current_right_fy_N_,  current_right_fz_N_;
+  double current_right_tx_Nm_, current_right_ty_Nm_, current_right_tz_Nm_;
+  double current_left_fx_N_,  current_left_fy_N_,  current_left_fz_N_;
+  double current_left_tx_Nm_, current_left_ty_Nm_, current_left_tz_Nm_;
+
+  Eigen::Quaterniond quat_current_imu_;
+  Eigen::MatrixXd mat_current_imu_;
+  double current_imu_roll_rad_, current_imu_pitch_rad_;
+  double current_gyro_roll_rad_per_sec_, current_gyro_pitch_rad_per_sec_;
+
+private:
+  void calcStepIdxData();
+  void calcRefZMP();
+  void calcDesiredPose();
+
+  double wsin(double time, double period, double period_shift, double mag, double mag_shift);
+  double wsigmoid(double time, double period, double time_shift, double mag, double mag_shift, double sigmoid_ratio, double distortion_ratio);
+
+  double r_leg_to_body_roll_gain_, l_leg_to_body_roll_gain_;
+  double r_leg_to_body_pitch_gain_, l_leg_to_body_pitch_gain_;
+  Eigen::MatrixXd des_balance_offset_;
+  robotis_framework::MinimumJerkViaPoint *feed_forward_tra_;
+  int     mov_size_, mov_step_;
+  double  mov_time_;
+  bool init_balance_offset_;
+
+  void parseBalanceOffsetData(const std::string &path);
+  void initBalanceOffset();
+  void setBalanceOffset();
+
+  KinematicsDynamics* thormang3_kd_;
+
+  double left_fz_trajectory_start_time_;
+  double left_fz_trajectory_end_time_;
+  double left_fz_trajectory_target_;
+  double left_fz_trajectory_shift_;
+
+  double total_mass_of_robot_;
+  double right_dsp_fz_N_, right_ssp_fz_N_;
+  double left_dsp_fz_N_,  left_ssp_fz_N_;
+
+  Eigen::MatrixXd mat_robot_to_cob_modified_, mat_cob_to_robot_modified_;
+  Eigen::MatrixXd mat_robot_to_rf_modified_;
+  Eigen::MatrixXd mat_robot_to_lf_modified_;
+  Eigen::MatrixXd mat_robot_to_rfoot_;
+  Eigen::MatrixXd mat_robot_to_lfoot_;
+
+  std::vector<robotis_framework::StepData> added_step_data_;
+
+  double goal_waist_yaw_angle_rad_;
+  robotis_framework::StepData current_step_data_;
+  robotis_framework::StepData reference_step_data_for_addition_;
+  robotis_framework::Pose3D initial_right_foot_pose_, initial_left_foot_pose_, initial_body_pose_;
+  robotis_framework::Pose3D present_right_foot_pose_, present_left_foot_pose_, present_body_pose_;
+  robotis_framework::Pose3D previous_step_right_foot_pose_, previous_step_left_foot_pose_, previous_step_body_pose_;
+  robotis_framework::Pose3D rhip_to_rfoot_pose_, lhip_to_lfoot_pose_;
+  robotis_framework::FifthOrderPolynomialTrajectory foot_x_tra_,    foot_y_tra_,     foot_z_tra_;
+  robotis_framework::FifthOrderPolynomialTrajectory foot_roll_tra_, foot_pitch_tra_, foot_yaw_tra_;
+  robotis_framework::FifthOrderPolynomialTrajectory foot_z_swap_tra_;
+  robotis_framework::FifthOrderPolynomialTrajectory body_z_tra_, body_roll_tra_, body_pitch_tra_, body_yaw_tra_;
+  robotis_framework::FifthOrderPolynomialTrajectory waist_yaw_tra_;
+  robotis_framework::FifthOrderPolynomialTrajectory body_z_swap_tra_;
+  robotis_framework::FifthOrderPolynomialTrajectory hip_roll_swap_tra_;
+
+  double present_waist_yaw_angle_rad_;
+  double previous_step_waist_yaw_angle_rad_;
+  double r_init_shoulder_angle_rad_, r_init_elbow_angle_rad_;
+  double l_init_shoulder_angle_rad_, l_init_elbow_angle_rad_;
+  double r_shoulder_dir_, r_elbow_dir_;
+  double l_shoulder_dir_, l_elbow_dir_;
+  double shouler_swing_gain_, elbow_swing_gain_;
+
+  Eigen::MatrixXd mat_rfoot_to_rft_, mat_lfoot_to_lft_;
+  Eigen::MatrixXd rot_x_pi_3d_, rot_z_pi_3d_;
+
+  Eigen::VectorXi step_idx_data_;
+  boost::mutex step_data_mutex_lock_;
+  boost::mutex imu_data_mutex_lock_;
+
+  //Time for Preview Control and Dynamics Regulator
+  double preview_time_;
+  int preview_size_;
+
+  //These matrix and parameters are for preview control
+  Eigen::MatrixXd A_, b_, c_;
+  Eigen::MatrixXd k_x_;
+  Eigen::MatrixXd f_;
+  double k_s_;
+  double sum_of_zmp_x_ ;
+  double sum_of_zmp_y_ ;
+  double sum_of_cx_ ;
+  double sum_of_cy_ ;
+  Eigen::MatrixXd u_x, u_y;
+  Eigen::MatrixXd x_lipm_, y_lipm_;
+
+  int current_start_idx_for_ref_zmp_;
+
+  double ref_zmp_x_at_this_time_, ref_zmp_y_at_this_time_;
+  Eigen::MatrixXd reference_zmp_x_, reference_zmp_y_;
+
+  bool real_running, ctrl_running;
+
+  double walking_time_;    //Absolute Time
+  double reference_time_;  //Absolute Time
+  int balancing_index_;
+  int current_step_data_status_;
+};
+
+}
+
+#endif /* THORMANG3_WALKING_MODULE_THORMANG3_ONLINEL_WALKING_H_ */

@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>thormang3_feet_ft_module</name>
+  <version>0.2.0</version>
+  <description>
+    This package is a sensor module for force torque sensors on feet.
+  </description>
+  <license>Apache 2.0</license>
+  <author email="zerom@robotis.com">Zerom</author>
+  <author email="sch@robotis.com">SCH</author>
+  <author email="kmjung@robotis.com">Kayman</author>
+  <author>Jay Song</author>
+  <maintainer email="pyo@robotis.com">Pyo</maintainer>
+  <url type="website">http://wiki.ros.org/thormang3_feet_ft_module</url>
+  <url type="emanual">http://emanual.robotis.com/docs/en/platform/thormang3/introduction/</url>
+  <url type="repository">https://github.com/ROBOTIS-GIT/ROBOTIS-THORMANG-MPC</url>
+  <url type="bugtracker">https://github.com/ROBOTIS-GIT/ROBOTIS-THORMANG-MPC/issues</url>
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>roscpp</depend>
+  <depend>std_msgs</depend>
+  <depend>robotis_controller_msgs</depend>
+  <depend>thormang3_feet_ft_module_msgs</depend>
+  <depend>cmake_modules</depend>
+  <depend>robotis_framework_common</depend>
+  <depend>robotis_math</depend>
+  <depend>thormang3_kinematics_dynamics</depend>
+  <depend>ati_ft_sensor</depend>
+  <depend>boost</depend>
+  <depend>eigen</depend>
+  <depend>yaml-cpp</depend>
+</package>

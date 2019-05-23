@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>thormang3_manipulation_module</name>
+  <version>0.2.0</version>
+  <description>
+    This package describes basic function to control THORMANG3's upper-body.
+    This module is based on position control.
+    We provide joint space and task space control (forward kinematics, inverse kinematics).
+  </description>
+  <license>Apache 2.0</license>
+  <author email="sch@robotis.com">SCH</author>
+  <maintainer email="pyo@robotis.com">Pyo</maintainer>
+  <url type="website">http://wiki.ros.org/thormang3_manipulation_module</url>
+  <url type="emanual">http://emanual.robotis.com/docs/en/platform/thormang3/introduction/</url>
+  <url type="repository">https://github.com/ROBOTIS-GIT/ROBOTIS-THORMANG-MPC</url>
+  <url type="bugtracker">https://github.com/ROBOTIS-GIT/ROBOTIS-THORMANG-MPC/issues</url>
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>roscpp</depend>
+  <depend>roslib</depend>
+  <depend>std_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>robotis_controller_msgs</depend>
+  <depend>thormang3_manipulation_module_msgs</depend>
+  <depend>cmake_modules</depend>
+  <depend>robotis_framework_common</depend>
+  <depend>robotis_math</depend>
+  <depend>thormang3_kinematics_dynamics</depend>
+  <depend>boost</depend>
+  <depend>eigen</depend>
+  <depend>yaml-cpp</depend>
+</package>
