@@ -18,6 +18,7 @@
   <depend>roscpp</depend>
   <depend>robotis_controller</depend>
   <depend>thormang3_feet_ft_module</depend>
+  <depend>thormang3_alarm_module</depend>
   <depend>thormang3_base_module</depend>
   <depend>thormang3_action_module</depend>
   <depend>thormang3_head_control_module</depend>

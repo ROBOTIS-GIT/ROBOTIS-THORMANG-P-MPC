@@ -14,6 +14,7 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   robotis_controller
   thormang3_feet_ft_module
+  thormang3_alarm_module
   thormang3_base_module
   thormang3_action_module
   thormang3_head_control_module
@@ -43,6 +44,7 @@ catkin_package(
     roscpp
     robotis_controller
     thormang3_feet_ft_module
+    thormang3_alarm_module
     thormang3_base_module
     thormang3_action_module
     thormang3_head_control_module
