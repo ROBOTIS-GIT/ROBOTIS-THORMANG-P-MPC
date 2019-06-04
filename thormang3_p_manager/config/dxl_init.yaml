@@ -272,8 +272,8 @@ r_leg_hip_y :   # H54P-100-S500-R
   max_position_limit    : 501923
   min_position_limit    : -501923
   shutdown              : 27
-  velocity_i_gain       : 1290  # default : 1290
-  velocity_p_gain       : 4491  # default : 3593
+  velocity_i_gain       : 1290
+  velocity_p_gain       : 3593
   position_d_gain       : 0
   position_i_gain       : 0
   position_p_gain       : 502
@@ -291,8 +291,8 @@ l_leg_hip_y :   # H54P-100-S500-R
   max_position_limit    : 501923
   min_position_limit    : -501923
   shutdown              : 27
-  velocity_i_gain       : 1290  # default : 1290
-  velocity_p_gain       : 4491  # default : 3593
+  velocity_i_gain       : 1290
+  velocity_p_gain       : 3593
   position_d_gain       : 0
   position_i_gain       : 0
   position_p_gain       : 502
@@ -310,8 +310,8 @@ r_leg_hip_r :   # H54P-200-S500-R
   max_position_limit    : 501433
   min_position_limit    : -501433
   shutdown              : 27
-  velocity_i_gain       : 2209  # default : 2209
-  velocity_p_gain       : 7691  # default : 6153
+  velocity_i_gain       : 2209
+  velocity_p_gain       : 6153
   position_d_gain       : 0
   position_i_gain       : 0
   position_p_gain       : 314
@@ -329,8 +329,8 @@ l_leg_hip_r :   # H54P-200-S500-R
   max_position_limit    : 501433
   min_position_limit    : -501433
   shutdown              : 27
-  velocity_i_gain       : 2209  # default : 2209
-  velocity_p_gain       : 7691  # default : 6153
+  velocity_i_gain       : 2209
+  velocity_p_gain       : 6153
   position_d_gain       : 0
   position_i_gain       : 0
   position_p_gain       : 314
@@ -348,8 +348,8 @@ r_leg_hip_p :   # H54P-200-S500-R
   max_position_limit    : 501433
   min_position_limit    : -501433
   shutdown              : 27
-  velocity_i_gain       : 2209  # default : 2209
-  velocity_p_gain       : 7691  # default : 6153
+  velocity_i_gain       : 2209
+  velocity_p_gain       : 6153
   position_d_gain       : 0
   position_i_gain       : 0
   position_p_gain       : 314
@@ -367,8 +367,8 @@ l_leg_hip_p :   # H54P-200-S500-R
   max_position_limit    : 501433
   min_position_limit    : -501433
   shutdown              : 27
-  velocity_i_gain       : 2209  # default : 2209
-  velocity_p_gain       : 7691  # default : 6153
+  velocity_i_gain       : 2209
+  velocity_p_gain       : 6153
   position_d_gain       : 0
   position_i_gain       : 0
   position_p_gain       : 314
@@ -386,8 +386,8 @@ r_leg_kn_p  :   # H54P-200-S500-R
   max_position_limit    : 501433
   min_position_limit    : -501433
   shutdown              : 27
-  velocity_i_gain       : 2209  # default : 2209
-  velocity_p_gain       : 7691  # default : 6153
+  velocity_i_gain       : 2209
+  velocity_p_gain       : 6153
   position_d_gain       : 0
   position_i_gain       : 0
   position_p_gain       : 314
@@ -405,8 +405,8 @@ l_leg_kn_p  :   # H54P-200-S500-R
   max_position_limit    : 501433
   min_position_limit    : -501433
   shutdown              : 27
-  velocity_i_gain       : 2209  # default : 2209
-  velocity_p_gain       : 7691  # default : 6153
+  velocity_i_gain       : 2209
+  velocity_p_gain       : 6153
   position_d_gain       : 0
   position_i_gain       : 0
   position_p_gain       : 314
@@ -426,8 +426,8 @@ r_leg_an_p  :   # H54P-200-S500-R
   external_port_mod_1   : 0
   external_port_mod_2   : 0
   shutdown              : 27
-  velocity_i_gain       : 2209  # default : 2209
-  velocity_p_gain       : 7691  # default : 6153
+  velocity_i_gain       : 2209
+  velocity_p_gain       : 6153
   position_d_gain       : 0
   position_i_gain       : 0
   position_p_gain       : 314
@@ -447,8 +447,8 @@ l_leg_an_p  :   # H54P-200-S500-R
   external_port_mod_1   : 0
   external_port_mod_2   : 0
   shutdown              : 27
-  velocity_i_gain       : 2209  # default : 2209
-  velocity_p_gain       : 7691  # default : 6153
+  velocity_i_gain       : 2209
+  velocity_p_gain       : 6153
   position_d_gain       : 0
   position_i_gain       : 0
   position_p_gain       : 314
@@ -470,8 +470,8 @@ r_leg_an_r  :   # H54P-200-S500-R
   external_port_mod_3   : 0
   external_port_mod_4   : 0
   shutdown              : 27
-  velocity_i_gain       : 2209  # default : 2209
-  velocity_p_gain       : 7691  # default : 6153
+  velocity_i_gain       : 2209
+  velocity_p_gain       : 6153
   position_d_gain       : 0
   position_i_gain       : 0
   position_p_gain       : 314
@@ -493,8 +493,8 @@ l_leg_an_r  :   # H54P-200-S500-R
   external_port_mod_3   : 0
   external_port_mod_4   : 0
   shutdown              : 27
-  velocity_i_gain       : 2209  # default : 2209
-  velocity_p_gain       : 7691  # default : 6153
+  velocity_i_gain       : 2209
+  velocity_p_gain       : 6153
   position_d_gain       : 0
   position_i_gain       : 0
   position_p_gain       : 314
