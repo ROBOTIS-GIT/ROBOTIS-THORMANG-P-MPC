@@ -117,7 +117,7 @@ class TuningModule : public robotis_framework::MotionModule, public robotis_fram
   TuneJointState *joint_state_;
 
  private:
-  const int NONE_GAIN = 65535;
+  const int NO_GAIN = 65535;
   void queueThread();
   void setCtrlModule(std::string module);
   void callServiceSettingModule(const std::string &module_name);
