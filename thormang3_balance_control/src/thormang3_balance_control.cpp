@@ -428,7 +428,7 @@ void BalanceControlUsingDampingConroller::setDesiredPose(const Eigen::MatrixXd &
   desired_robot_to_left_foot_  = robot_to_left_foot;
 }
 
-void BalanceControlUsingDampingConroller::setDesiredCOBGyro(double gyro_roll, double gyro_pitch)\
+void BalanceControlUsingDampingConroller::setDesiredCOBGyro(double gyro_roll, double gyro_pitch)
 {
   desired_gyro_roll_  = gyro_roll;
   desired_gyro_pitch_ = gyro_pitch;
@@ -840,7 +840,7 @@ void BalanceControlUsingPDController::setDesiredCOBGyro(double gyro_roll, double
 void BalanceControlUsingPDController::setDesiredCOBOrientation(double cob_orientation_roll, double cob_orientation_pitch)
 {
   foot_roll_angle_ctrl_.desired_  = cob_orientation_roll;
-  foot_pitch_angle_ctrl_.desired_ = cob_orientation_pitch;
+  foot_pitch_angle_ctrl_.desired_ = cob_orientation_pitch + (2.0 * M_PI / 180.0);
 }
 
 void BalanceControlUsingPDController::setDesiredFootForceTorque(double r_force_x_N,      double r_force_y_N,       double r_force_z_N,
