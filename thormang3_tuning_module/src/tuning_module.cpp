@@ -59,6 +59,19 @@ void TuningModule::initialize(const int control_cycle_msec, robotis_framework::R
 
     //Initialize RobotOffsetData
     robot_tuning_data_[joint_name] = new JointOffsetData(0, 0);
+    if(dxl_info->position_p_gain_item_ == 0)
+      robot_tuning_data_[joint_name]->p_gain_ = NO_GAIN;
+    if(dxl_info->position_i_gain_item_ == 0)
+      robot_tuning_data_[joint_name]->i_gain_ = NO_GAIN;
+    if(dxl_info->position_d_gain_item_ == 0)
+      robot_tuning_data_[joint_name]->d_gain_ = NO_GAIN;
+    if(dxl_info->velocity_p_gain_item_ == 0)
+      robot_tuning_data_[joint_name]->velocity_p_gain_ = NO_GAIN;
+    if(dxl_info->velocity_i_gain_item_ == 0)
+      robot_tuning_data_[joint_name]->velocity_i_gain_ = NO_GAIN;
+    if(dxl_info->velocity_d_gain_item_ == 0)
+      robot_tuning_data_[joint_name]->velocity_d_gain_ = NO_GAIN;
+
     robot_torque_enable_data_[joint_name] = true;
   }
 
@@ -621,32 +634,32 @@ void TuningModule::process(std::map<std::string, robotis_framework::Dynamixel *>
     int v_i_gain = joint_state_->goal_joint_state_[joint_name_to_id_[joint_name]].velocity_i_gain_;
     int v_d_gain = joint_state_->goal_joint_state_[joint_name_to_id_[joint_name]].velocity_d_gain_;
 
-    if(p_gain != NONE_GAIN)
+    if(p_gain != NO_GAIN)
     {
       result_[joint_name]->position_p_gain_ = p_gain;
       robot_tuning_data_[joint_name]->p_gain_ = p_gain;
     }
-    if(i_gain != NONE_GAIN)
+    if(i_gain != NO_GAIN)
     {
       result_[joint_name]->position_i_gain_ = i_gain;
       robot_tuning_data_[joint_name]->i_gain_ = i_gain;
     }
-    if(d_gain != NONE_GAIN)
+    if(d_gain != NO_GAIN)
     {
       result_[joint_name]->position_d_gain_ = d_gain;
       robot_tuning_data_[joint_name]->d_gain_ = d_gain;
     }
-    if(v_p_gain != NONE_GAIN)
+    if(v_p_gain != NO_GAIN)
     {
       result_[joint_name]->velocity_p_gain_ = v_p_gain;
       robot_tuning_data_[joint_name]->velocity_p_gain_ = v_p_gain;
     }
-    if(v_i_gain != NONE_GAIN)
+    if(v_i_gain != NO_GAIN)
     {
       result_[joint_name]->velocity_i_gain_ = v_i_gain;
       robot_tuning_data_[joint_name]->velocity_i_gain_ = v_i_gain;
     }
-    if(v_d_gain != NONE_GAIN)
+    if(v_d_gain != NO_GAIN)
     {
       result_[joint_name]->velocity_d_gain_ = v_d_gain;
       robot_tuning_data_[joint_name]->velocity_d_gain_ = v_d_gain;
@@ -1015,28 +1028,28 @@ void TuningModule::parseDxlInit(const std::string &path)
     if(joint_node["position_p_gain"] != NULL)
       joint_data->p_gain_ = joint_node["position_p_gain"].as<int>();
     else
-      joint_data->p_gain_ = NONE_GAIN;
+      joint_data->p_gain_ = NO_GAIN;
     if(joint_node["position_i_gain"] != NULL)
       joint_data->i_gain_ = joint_node["position_i_gain"].as<int>();
     else
-      joint_data->i_gain_ = NONE_GAIN;
+      joint_data->i_gain_ = NO_GAIN;
     if(joint_node["position_d_gain"] != NULL)
       joint_data->d_gain_ = joint_node["position_d_gain"].as<int>();
     else
-      joint_data->d_gain_ = NONE_GAIN;
+      joint_data->d_gain_ = NO_GAIN;
 
     if(joint_node["velocity_p_gain"] != NULL)
       joint_data->velocity_p_gain_ = joint_node["velocity_p_gain"].as<int>();
     else
-      joint_data->velocity_p_gain_ = NONE_GAIN;
+      joint_data->velocity_p_gain_ = NO_GAIN;
     if(joint_node["velocity_i_gain"] != NULL)
       joint_data->velocity_i_gain_ = joint_node["velocity_i_gain"].as<int>();
     else
-      joint_data->velocity_i_gain_ = NONE_GAIN;
+      joint_data->velocity_i_gain_ = NO_GAIN;
     if(joint_node["velocity_d_gain"] != NULL)
       joint_data->velocity_d_gain_ = joint_node["velocity_d_gain"].as<int>();
     else
-      joint_data->velocity_d_gain_ = NONE_GAIN;
+      joint_data->velocity_d_gain_ = NO_GAIN;
   }
 }
 
@@ -1077,17 +1090,17 @@ void TuningModule::saveDxlInit(const std::string &path)
 
     }
 
-    if(joint_data->p_gain_ != NONE_GAIN)
+    if(joint_data->p_gain_ != NO_GAIN)
       dxl_init_param["position_p_gain"] = joint_data->p_gain_;
-    if(joint_data->i_gain_ != NONE_GAIN)
+    if(joint_data->i_gain_ != NO_GAIN)
       dxl_init_param["position_i_gain"] = joint_data->i_gain_;
-    if(joint_data->d_gain_ != NONE_GAIN)
+    if(joint_data->d_gain_ != NO_GAIN)
       dxl_init_param["position_d_gain"] = joint_data->d_gain_;
-    if(joint_data->velocity_p_gain_ != NONE_GAIN)
+    if(joint_data->velocity_p_gain_ != NO_GAIN)
       dxl_init_param["velocity_p_gain"] = joint_data->velocity_p_gain_;
-    if(joint_data->velocity_i_gain_ != NONE_GAIN)
+    if(joint_data->velocity_i_gain_ != NO_GAIN)
       dxl_init_param["velocity_i_gain"] = joint_data->velocity_i_gain_;
-    if(joint_data->velocity_d_gain_ != NONE_GAIN)
+    if(joint_data->velocity_d_gain_ != NO_GAIN)
       dxl_init_param["velocity_d_gain"] = joint_data->velocity_d_gain_;
 
     yaml_out << YAML::Key << joint_name << YAML::Value << dxl_init_param;
