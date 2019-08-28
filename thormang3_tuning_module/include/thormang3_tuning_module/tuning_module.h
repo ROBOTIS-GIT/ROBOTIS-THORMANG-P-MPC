@@ -46,6 +46,7 @@
 #include "thormang3_tuning_module_msgs/JointOffsetData.h"
 #include "thormang3_tuning_module_msgs/JointTorqueOnOffArray.h"
 #include "thormang3_tuning_module_msgs/GetPresentJointOffsetData.h"
+#include "thormang3_tuning_module_msgs/JointsOffsetPositionData.h"
 
 #include "tuning_module_state.h"
 #include "tuning_data.h"
@@ -107,9 +108,6 @@ class TuningModule : public robotis_framework::MotionModule, public robotis_fram
   /* ROS Calculation Functions */
   void targetPoseTrajGenerateProc();
 
-  void poseGenerateProc(Eigen::MatrixXd joint_angle_pose);
-  void poseGenerateProc(std::map<std::string, double>& joint_angle_pose);
-
   /* Parameter */
   // state for generating trajectory
   TuningModuleState *tuning_module_state_;
@@ -117,7 +115,7 @@ class TuningModule : public robotis_framework::MotionModule, public robotis_fram
   TuneJointState *joint_state_;
 
  private:
-  const int NO_GAIN = 65535;
+  const int NONE_GAIN = 65535;
   void queueThread();
   void setCtrlModule(std::string module);
   void callServiceSettingModule(const std::string &module_name);
@@ -132,6 +130,7 @@ class TuningModule : public robotis_framework::MotionModule, public robotis_fram
   void saveOffsetToYaml(const std::string &path);
   void parseDxlInit(const std::string &path);
   void saveDxlInit(const std::string &path);
+  void sendPresentJointOffsetData();
 
   int control_cycle_msec_;
   boost::thread queue_thread_;
@@ -146,6 +145,7 @@ class TuningModule : public robotis_framework::MotionModule, public robotis_fram
   // offset tuner
   ros::Publisher sync_write_pub_;
   ros::Publisher enable_offset_pub_;
+  ros::Publisher present_joint_pub_;
   ros::Subscriber send_tra_sub_;
   ros::Subscriber joint_offset_data_sub_;
   ros::Subscriber joint_gain_data_sub_;
