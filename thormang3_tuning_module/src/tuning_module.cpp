@@ -60,17 +60,17 @@ void TuningModule::initialize(const int control_cycle_msec, robotis_framework::R
     //Initialize RobotOffsetData
     robot_tuning_data_[joint_name] = new JointOffsetData(0, 0);
     if(dxl_info->position_p_gain_item_ == 0)
-      robot_tuning_data_[joint_name]->p_gain_ = NO_GAIN;
+      robot_tuning_data_[joint_name]->p_gain_ = NONE_GAIN;
     if(dxl_info->position_i_gain_item_ == 0)
-      robot_tuning_data_[joint_name]->i_gain_ = NO_GAIN;
+      robot_tuning_data_[joint_name]->i_gain_ = NONE_GAIN;
     if(dxl_info->position_d_gain_item_ == 0)
-      robot_tuning_data_[joint_name]->d_gain_ = NO_GAIN;
+      robot_tuning_data_[joint_name]->d_gain_ = NONE_GAIN;
     if(dxl_info->velocity_p_gain_item_ == 0)
-      robot_tuning_data_[joint_name]->velocity_p_gain_ = NO_GAIN;
+      robot_tuning_data_[joint_name]->velocity_p_gain_ = NONE_GAIN;
     if(dxl_info->velocity_i_gain_item_ == 0)
-      robot_tuning_data_[joint_name]->velocity_i_gain_ = NO_GAIN;
+      robot_tuning_data_[joint_name]->velocity_i_gain_ = NONE_GAIN;
     if(dxl_info->velocity_d_gain_item_ == 0)
-      robot_tuning_data_[joint_name]->velocity_d_gain_ = NO_GAIN;
+      robot_tuning_data_[joint_name]->velocity_d_gain_ = NONE_GAIN;
 
     robot_torque_enable_data_[joint_name] = true;
   }
@@ -341,7 +341,8 @@ void TuningModule::queueThread()
                                                   &TuningModule::getPresentJointOffsetDataServiceCallback, this);
 
   set_module_client_ = ros_node.serviceClient<robotis_controller_msgs::SetModule>("/robotis/set_present_ctrl_modules");
-  enable_offset_pub_ =  ros_node.advertise<std_msgs::Bool>("/robotis/enable_offset", 1);
+  enable_offset_pub_ = ros_node.advertise<std_msgs::Bool>("/robotis/enable_offset", 1);
+  present_joint_pub_ = ros_node.advertise<thormang3_tuning_module_msgs::JointsOffsetPositionData>("/robotis/tuning_module/present_joints_data", 1);
   load_offset_client_ = ros_node.serviceClient<robotis_controller_msgs::LoadOffset>("/robotis/load_offset");
 
   ros::WallDuration duration(control_cycle_msec_ / 1000.0);
@@ -421,89 +422,6 @@ void TuningModule::targetPoseTrajGenerateProc()
 
   tuning_module_state_->is_moving_ = true;
   tuning_module_state_->cnt_ = 0;
-  ROS_INFO("[start] send trajectory");
-}
-
-void TuningModule::poseGenerateProc(Eigen::MatrixXd joint_angle_pose)
-{
-  callServiceSettingModule(module_name_);
-
-  while (enable_ == false || has_goal_joints_ == false)
-    usleep(8 * 1000);
-
-  tuning_module_state_->mov_time_ = 5.0;
-  tuning_module_state_->all_time_steps_ = int(tuning_module_state_->mov_time_ / tuning_module_state_->smp_time_) + 1;
-
-  tuning_module_state_->calc_joint_tra_.resize(tuning_module_state_->all_time_steps_, MAX_JOINT_ID + 1);
-
-  tuning_module_state_->joint_pose_ = joint_angle_pose;
-
-  for (int id = 1; id <= MAX_JOINT_ID; id++)
-  {
-    double ini_value = joint_state_->goal_joint_state_[id].position_;
-    double tar_value = tuning_module_state_->joint_pose_.coeff(id, 0);
-
-    ROS_INFO_STREAM("[ID : " << id << "] ini_value : " << ini_value << "  tar_value : " << tar_value);
-
-    Eigen::MatrixXd tra = robotis_framework::calcMinimumJerkTra(ini_value, 0.0, 0.0, tar_value, 0.0, 0.0,
-                                                                tuning_module_state_->smp_time_,
-                                                                tuning_module_state_->mov_time_);
-
-    tuning_module_state_->calc_joint_tra_.block(0, id, tuning_module_state_->all_time_steps_, 1) = tra;
-  }
-
-  tuning_module_state_->is_moving_ = true;
-  tuning_module_state_->cnt_ = 0;
-  ini_pose_only_ = true;
-  ROS_INFO("[start] send trajectory");
-}
-
-void TuningModule::poseGenerateProc(std::map<std::string, double>& joint_angle_pose)
-{
-  callServiceSettingModule(module_name_);
-
-  while (enable_ == false || has_goal_joints_ == false)
-    usleep(8 * 1000);
-
-  Eigen::MatrixXd target_pose = Eigen::MatrixXd::Zero( MAX_JOINT_ID + 1, 1);
-
-  for (std::map<std::string, double>::iterator joint_angle_it = joint_angle_pose.begin();
-       joint_angle_it != joint_angle_pose.end(); joint_angle_it++)
-  {
-    std::string joint_name = joint_angle_it->first;
-    double joint_angle_rad = joint_angle_it->second;
-
-    std::map<std::string, int>::iterator joint_name_to_id_it = joint_name_to_id_.find(joint_name);
-    if (joint_name_to_id_it != joint_name_to_id_.end())
-    {
-      target_pose.coeffRef(joint_name_to_id_it->second, 0) = joint_angle_rad;
-    }
-  }
-
-  tuning_module_state_->joint_pose_ = target_pose;
-
-  tuning_module_state_->mov_time_ = 5.0;
-  tuning_module_state_->all_time_steps_ = int(tuning_module_state_->mov_time_ / tuning_module_state_->smp_time_) + 1;
-
-  tuning_module_state_->calc_joint_tra_.resize(tuning_module_state_->all_time_steps_, MAX_JOINT_ID + 1);
-
-  for (int id = 1; id <= MAX_JOINT_ID; id++)
-  {
-    double ini_value = joint_state_->goal_joint_state_[id].position_;
-    double tar_value = tuning_module_state_->joint_pose_.coeff(id, 0);
-
-    ROS_INFO_STREAM("[ID : " << id << "] ini_value : " << ini_value << "  tar_value : " << tar_value);
-
-    Eigen::MatrixXd tra = robotis_framework::calcMinimumJerkTra(ini_value, 0.0, 0.0, tar_value, 0.0, 0.0,
-                                                                tuning_module_state_->smp_time_,
-                                                                tuning_module_state_->mov_time_);
-
-    tuning_module_state_->calc_joint_tra_.block(0, id, tuning_module_state_->all_time_steps_, 1) = tra;
-  }
-
-  tuning_module_state_->is_moving_ = true;
-  tuning_module_state_->cnt_ = 0;
-  ini_pose_only_ = true;
   ROS_INFO("[start] send trajectory");
 }
 
@@ -634,32 +552,32 @@ void TuningModule::process(std::map<std::string, robotis_framework::Dynamixel *>
     int v_i_gain = joint_state_->goal_joint_state_[joint_name_to_id_[joint_name]].velocity_i_gain_;
     int v_d_gain = joint_state_->goal_joint_state_[joint_name_to_id_[joint_name]].velocity_d_gain_;
 
-    if(p_gain != NO_GAIN)
+    if(p_gain != NONE_GAIN)
     {
       result_[joint_name]->position_p_gain_ = p_gain;
       robot_tuning_data_[joint_name]->p_gain_ = p_gain;
     }
-    if(i_gain != NO_GAIN)
+    if(i_gain != NONE_GAIN)
     {
       result_[joint_name]->position_i_gain_ = i_gain;
       robot_tuning_data_[joint_name]->i_gain_ = i_gain;
     }
-    if(d_gain != NO_GAIN)
+    if(d_gain != NONE_GAIN)
     {
       result_[joint_name]->position_d_gain_ = d_gain;
       robot_tuning_data_[joint_name]->d_gain_ = d_gain;
     }
-    if(v_p_gain != NO_GAIN)
+    if(v_p_gain != NONE_GAIN)
     {
       result_[joint_name]->velocity_p_gain_ = v_p_gain;
       robot_tuning_data_[joint_name]->velocity_p_gain_ = v_p_gain;
     }
-    if(v_i_gain != NO_GAIN)
+    if(v_i_gain != NONE_GAIN)
     {
       result_[joint_name]->velocity_i_gain_ = v_i_gain;
       robot_tuning_data_[joint_name]->velocity_i_gain_ = v_i_gain;
     }
-    if(v_d_gain != NO_GAIN)
+    if(v_d_gain != NONE_GAIN)
     {
       result_[joint_name]->velocity_d_gain_ = v_d_gain;
       robot_tuning_data_[joint_name]->velocity_d_gain_ = v_d_gain;
@@ -681,6 +599,11 @@ void TuningModule::process(std::map<std::string, robotis_framework::Dynamixel *>
     {
       setCtrlModule("none");
       ini_pose_only_ = false;
+    }
+    // update present joints state
+    else
+    {
+      sendPresentJointOffsetData();
     }
   }
 }
@@ -941,6 +864,41 @@ bool TuningModule::getPresentJointOffsetDataServiceCallback(
   return true;
 }
 
+void TuningModule::sendPresentJointOffsetData()
+{
+  thormang3_tuning_module_msgs::JointsOffsetPositionData present_data;
+
+  for (std::map<std::string, JointOffsetData*>::iterator map_it = robot_tuning_data_.begin();
+       map_it != robot_tuning_data_.end(); map_it++)
+  {
+    std::string joint_name = map_it->first;
+    JointOffsetData* joint_data = map_it->second;
+
+    thormang3_tuning_module_msgs::JointOffsetPositionData joint_offset_pos;
+
+    // get present joint value
+    //...
+    double present_value = joint_state_->curr_joint_state_[joint_name_to_id_[joint_name]].position_;
+
+    // set message for respond
+    joint_offset_pos.joint_name = joint_name;
+    joint_offset_pos.goal_value = joint_data->goal_position_;
+    joint_offset_pos.offset_value = joint_data->joint_offset_rad_;
+    joint_offset_pos.present_value = present_value; // present value of this joint
+    joint_offset_pos.p_gain = joint_data->p_gain_;
+    joint_offset_pos.i_gain = joint_data->i_gain_;
+    joint_offset_pos.d_gain = joint_data->d_gain_;
+    joint_offset_pos.velocity_p_gain = joint_data->velocity_p_gain_;
+    joint_offset_pos.velocity_i_gain = joint_data->velocity_i_gain_;
+    joint_offset_pos.velocity_d_gain = joint_data->velocity_d_gain_;
+
+    present_data.present_data_array.push_back(joint_offset_pos);
+    std::cout << "joint : " << joint_name << ", p_gain : " << joint_data->p_gain_ << std::endl;
+  }
+
+  present_joint_pub_.publish(present_data);
+}
+
 bool TuningModule::turnOnOffOffset(bool turn_on)
 {
   ROS_WARN("Try to turn on/off offset in robotis_controller");
@@ -1028,28 +986,28 @@ void TuningModule::parseDxlInit(const std::string &path)
     if(joint_node["position_p_gain"] != NULL)
       joint_data->p_gain_ = joint_node["position_p_gain"].as<int>();
     else
-      joint_data->p_gain_ = NO_GAIN;
+      joint_data->p_gain_ = NONE_GAIN;
     if(joint_node["position_i_gain"] != NULL)
       joint_data->i_gain_ = joint_node["position_i_gain"].as<int>();
     else
-      joint_data->i_gain_ = NO_GAIN;
+      joint_data->i_gain_ = NONE_GAIN;
     if(joint_node["position_d_gain"] != NULL)
       joint_data->d_gain_ = joint_node["position_d_gain"].as<int>();
     else
-      joint_data->d_gain_ = NO_GAIN;
+      joint_data->d_gain_ = NONE_GAIN;
 
     if(joint_node["velocity_p_gain"] != NULL)
       joint_data->velocity_p_gain_ = joint_node["velocity_p_gain"].as<int>();
     else
-      joint_data->velocity_p_gain_ = NO_GAIN;
+      joint_data->velocity_p_gain_ = NONE_GAIN;
     if(joint_node["velocity_i_gain"] != NULL)
       joint_data->velocity_i_gain_ = joint_node["velocity_i_gain"].as<int>();
     else
-      joint_data->velocity_i_gain_ = NO_GAIN;
+      joint_data->velocity_i_gain_ = NONE_GAIN;
     if(joint_node["velocity_d_gain"] != NULL)
       joint_data->velocity_d_gain_ = joint_node["velocity_d_gain"].as<int>();
     else
-      joint_data->velocity_d_gain_ = NO_GAIN;
+      joint_data->velocity_d_gain_ = NONE_GAIN;
   }
 }
 
@@ -1090,17 +1048,17 @@ void TuningModule::saveDxlInit(const std::string &path)
 
     }
 
-    if(joint_data->p_gain_ != NO_GAIN)
+    if(joint_data->p_gain_ != NONE_GAIN)
       dxl_init_param["position_p_gain"] = joint_data->p_gain_;
-    if(joint_data->i_gain_ != NO_GAIN)
+    if(joint_data->i_gain_ != NONE_GAIN)
       dxl_init_param["position_i_gain"] = joint_data->i_gain_;
-    if(joint_data->d_gain_ != NO_GAIN)
+    if(joint_data->d_gain_ != NONE_GAIN)
       dxl_init_param["position_d_gain"] = joint_data->d_gain_;
-    if(joint_data->velocity_p_gain_ != NO_GAIN)
+    if(joint_data->velocity_p_gain_ != NONE_GAIN)
       dxl_init_param["velocity_p_gain"] = joint_data->velocity_p_gain_;
-    if(joint_data->velocity_i_gain_ != NO_GAIN)
+    if(joint_data->velocity_i_gain_ != NONE_GAIN)
       dxl_init_param["velocity_i_gain"] = joint_data->velocity_i_gain_;
-    if(joint_data->velocity_d_gain_ != NO_GAIN)
+    if(joint_data->velocity_d_gain_ != NONE_GAIN)
       dxl_init_param["velocity_d_gain"] = joint_data->velocity_d_gain_;
 
     yaml_out << YAML::Key << joint_name << YAML::Value << dxl_init_param;
