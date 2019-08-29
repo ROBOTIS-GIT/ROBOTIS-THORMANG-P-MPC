@@ -334,8 +334,8 @@ void TuningModule::queueThread()
                                               &TuningModule::jointOffsetDataCallback, this);
   joint_gain_data_sub_ = ros_node.subscribe("/robotis/tuning_module/joint_gain_data", 10,
                                             &TuningModule::jointGainDataCallback, this);
-  joint_torque_enable_sub_ = ros_node.subscribe("/robotis/tuning_module/torque_enable", 10,
-                                                &TuningModule::jointTorqueOnOffCallback, this);
+  // joint_torque_enable_sub_ = ros_node.subscribe("/robotis/tuning_module/torque_enable", 10,
+  //                                              &TuningModule::jointTorqueOnOffCallback, this);
   command_sub_ = ros_node.subscribe("/robotis/tuning_module/command", 5, &TuningModule::commandCallback, this);
   offset_data_server_ = ros_node.advertiseService("robotis/tuning_module/get_present_joint_offset_data",
                                                   &TuningModule::getPresentJointOffsetDataServiceCallback, this);
@@ -456,6 +456,8 @@ void TuningModule::process(std::map<std::string, robotis_framework::Dynamixel *>
 
     double joint_pres_position = dxl->dxl_state_->present_position_ - offset_value;
     double joint_goal_position = dxl->dxl_state_->goal_position_ - offset_value;
+    if(robot_torque_enable_data_[joint_name] == false)
+      joint_goal_position = joint_pres_position;
     int p_gain = dxl->dxl_state_->position_p_gain_;
     int i_gain = dxl->dxl_state_->position_i_gain_;
     int d_gain = dxl->dxl_state_->position_d_gain_;
