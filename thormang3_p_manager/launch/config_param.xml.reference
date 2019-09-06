@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<launch>
+    <!-- 1. Copy this file to 'config_param.xml'. -->
+    <!-- 2. Make "thormang3_p_manager/config/SERIAL_NUMBER" fonder -->
+    <!-- 3. Copy config files to the folder -->
+    <!-- 4. Replace the 'ft_data.yaml' file with the one we provided. -->
+    
+    <arg name="serial_number"     default="SERIAL_NUMBER" />
+    <arg name="config_path"       default="$(find thormang3_p_manager)/config/$(arg serial_number)" />
+
+    <param name="offset_file_path"          value="$(arg config_path)/offset.yaml"/>
+    <param name="robot_file_path"           value="$(arg config_path)/THORMANG3_P.robot"/>
+    <param name="init_file_path"            value="$(arg config_path)/dxl_init.yaml"/>
+    <param name="ft_data_path"              value="$(arg config_path)/ft_data.yaml"/>
+    <param name="ft_calibration_data_path"  value="$(arg config_path)/ft_calibration_data.yaml"/>
+</launch>
