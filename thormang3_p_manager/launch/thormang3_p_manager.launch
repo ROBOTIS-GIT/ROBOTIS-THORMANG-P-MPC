@@ -1,22 +1,16 @@
 <?xml version="1.0" ?>
 <launch>    
-    <arg name="use_imu" default="true"/>
+    <include file="$(find thormang3_p_manager)/launch/config_param.xml" />
+
     <arg name="imu_version" default="3dm_gx5"/>
+    <arg name="use_imu" default="true"/>
     <arg name="use_lidar" default="true" />
-    <arg name="config_path" default="$(find thormang3_p_manager)/config" />
     
     <param name="gazebo"                   value="false"    type="bool"/>
     <param name="gazebo_robot_name"        value="thormang3"/>
     
-    <param name="offset_file_path"         value="$(arg config_path)/offset.yaml"/>
-    <param name="robot_file_path"          value="$(arg config_path)/THORMANG3_P.robot"/>
-    <param name="init_file_path"           value="$(arg config_path)/dxl_init.yaml"/>
-        
-    <param name="ft_data_path"             value="$(arg config_path)/ft_data.yaml"/>
-    <param name="ft_calibration_data_path" value="$(arg config_path)/ft_calibration_data.yaml"/>
-
     <param name="action_file_path"         value="$(find thormang3_action_module)/data/motion_4096.bin"/>
-                	 
+
     <!-- imu sensor package -->
     <group if="$(eval arg('imu_version') == '3dm_gx4')">
       <include file="$(find thormang3_imu_3dm_gx4)/launch/imu.launch" if="$(arg use_imu)"/>
@@ -24,7 +18,6 @@
     <group if="$(eval arg('imu_version') == '3dm_gx5')">
       <include file="$(find microstrain_3dm_gx5_45)/launch/microstrain_thormang_gx5_25.launch" if="$(arg use_imu)"/>
     </group>
-     
     
     <!-- lidar -->    
     <include file="$(find thormang3_description)/launch/thor_laserscan.launch" if="$(arg use_lidar)"/> 
