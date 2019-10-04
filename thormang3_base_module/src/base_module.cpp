@@ -379,6 +379,11 @@ bool BaseModule::isRunning()
   return base_module_state_->is_moving_;
 }
 
+void BaseModule::onModuleDisable()
+{
+  has_goal_joints_ = false;
+}
+
 void BaseModule::process(std::map<std::string, robotis_framework::Dynamixel *> dxls,
                          std::map<std::string, double> sensors)
 {

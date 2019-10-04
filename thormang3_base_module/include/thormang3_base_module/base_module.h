@@ -80,6 +80,7 @@ public:
 
   void stop();
   bool isRunning();
+  void onModuleDisable();
 
   /* ROS Topic Callback Functions */
   void initPoseMsgCallback(const std_msgs::String::ConstPtr& msg);
