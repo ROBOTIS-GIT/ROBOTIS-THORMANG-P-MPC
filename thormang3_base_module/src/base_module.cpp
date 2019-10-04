@@ -328,7 +328,7 @@ void BaseModule::poseGenerateProc(Eigen::MatrixXd joint_angle_pose)
   ROS_INFO("[start] send trajectory");
 }
 
-void BaseModule::poseGenerateProc(std::map<std::string, double>& joint_angle_pose)
+void BaseModule::poseGenerateProc(std::map<std::string, double>& joint_angle_pose, double mov_time)
 {
   setCtrlModule(module_name_);
   while (enable_ == false || has_goal_joints_ == false)
@@ -350,7 +350,7 @@ void BaseModule::poseGenerateProc(std::map<std::string, double>& joint_angle_pos
 
   base_module_state_->joint_pose_ = target_pose;
 
-  base_module_state_->mov_time_ = 5.0;
+  base_module_state_->mov_time_ = mov_time;
   base_module_state_->all_time_steps_ = int(base_module_state_->mov_time_ / base_module_state_->smp_time_) + 1;
 
   base_module_state_->calc_joint_tra_.resize(base_module_state_->all_time_steps_, MAX_JOINT_ID + 1);

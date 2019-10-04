@@ -89,7 +89,7 @@ public:
   void initPoseTrajGenerateProc();
 
   void poseGenerateProc(Eigen::MatrixXd joint_angle_pose);
-  void poseGenerateProc(std::map<std::string, double>& joint_angle_pose);
+  void poseGenerateProc(std::map<std::string, double>& joint_angle_pose, double mov_time = 5.0);
 
   /* Parameter */
   BaseModuleState  *base_module_state_;
